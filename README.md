@@ -18,7 +18,7 @@ You can run the step 2 only, but if u get an error, then follow 1 and 2
 
 3) Add Navigation Schematic 
 
-`ng generate @angular/material:material-nav --name <component-name>`
+`ng generate @angular/material:material-nav --name <component-name>` 
 
 4) Generate component
 ng generate component FirstPage
