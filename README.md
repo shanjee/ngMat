@@ -2,6 +2,28 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
+
+create a new material angular
+1) ng new ngMat
+
+
+2) open the project
+ng server --port 4021 --open
+
+Add Angular Material
+
+You can run the step 2 only, but if u get an error, then follow 1 and 2 
+1) npm install --save @angular/material@next @angular/cdk@next
+2) ng add @angular/material
+
+3) Add Navigation Schematic 
+
+`ng generate @angular/material:material-nav --name <component-name>`
+
+4) Generate component
+ng generate component FirstPage
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
