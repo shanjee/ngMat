@@ -1,5 +1,15 @@
 # NgMat
 
+# Create a new material angular
+1) ng new ngMat
+
+
+# Open the project
+ng server --port 4021 --open
+
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 
