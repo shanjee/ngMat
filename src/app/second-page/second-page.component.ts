@@ -1,15 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-second-page',
   templateUrl: './second-page.component.html',
   styleUrls: ['./second-page.component.css']
 })
-export class SecondPageComponent implements OnInit {
+export class SecondPageComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  percentageValue: (value: number) => string;
 
-  ngOnInit() {
+
+  constructor() {
+
+    this.percentageValue = function (value: number): string {
+      return `${Math.round(value)} / ${this['max']}`;
+    }
+
   }
+
+  gaugeValues: any = {
+    1: 180,
+    2: 50,
+    3: 50,
+    4: 50,
+    5: 50,
+    6: 50,
+    7: 50
+  };
+
+  interval: any;
+
+  ngOnInit(): void {
+    const updateValues = (): void => {
+      this.gaugeValues = {
+        1: Math.round(Math.random() * 170),
+        2: Math.round(Math.random() * 100),
+        3: Math.round(Math.random() * 100),
+        4: Math.round(Math.random() * 100),
+        5: Math.round(Math.random() * 200),
+        6: Math.round(Math.random() * 100),
+        7: Math.round(Math.random() * 100)
+      };
+    };
+
+    const INTERVAL: number = 2000;
+
+    this.interval = setInterval(updateValues, INTERVAL);
+    updateValues();
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
+  }
+
+  // Codes can be seen in https://www.npmjs.com/package/ngx-gauge
+  gaugeType = "arch";
+  gaugeValue = 65;
+  gaugeLabel = "Speed";
+  gaugeAppendText = "km/hr";
+  max = 280;
+
+  thresholdConfig = {
+    '0': { color: 'green' },
+    '40': { color: 'blue' },
+    '75': { color: 'yello' },
+    '100': { color: 'orange' },
+    '125': { color: 'red' }
+  };
 
 }

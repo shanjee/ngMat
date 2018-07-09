@@ -1,12 +1,53 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/angular-gauge/dist/angularjs-gauge.min.js"></script>
+
+
+
 <mat-tab-group dynamicHeight>
-  <mat-tab label="Short tab">
-    <div class="example-small-box mat-elevation-z4">
-      RPM Content
+  <mat-tab label="Vehicle Dashboard">
+    <!-- <div class="example-small-box mat-elevation-z4"> -->
+    <div class="example-large-box mat-elevation-z4">
+
+     <ngx-gauge [type]="gaugeType" [value]=gaugeValues[1] [label]="gaugeLabel" [thresholds]="thresholdConfig" 
+     [append]="gaugeAppendText">
+    </ngx-gauge>
+
     </div>
   </mat-tab>
-  <mat-tab label="Long tab">
+  <mat-tab label="Data Visualization">
     <div class="example-large-box mat-elevation-z4">
-      RPM Graph Content
+      
+        <mwl-gauge class="two" [max]="100" [dialStartAngle]="180" [dialEndAngle]="0" [value]="gaugeValues[2]" [animated]="true" [animationDuration]="2">
+          </mwl-gauge>
+
     </div>
+
   </mat-tab>
 </mat-tab-group>
+
+<div class="gauges-container">
+
+  <mwl-gauge [max]="100" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [label]="percentageValue" [value]="gaugeValues[1]"
+    [animated]="true" [animationDuration]="1">
+  </mwl-gauge>
+  <mwl-gauge class="two" [max]="100" [dialStartAngle]="180" [dialEndAngle]="0" [value]="gaugeValues[2]" [animated]="true" [animationDuration]="2">
+  </mwl-gauge>
+  <mwl-gauge class="three" [max]="100" [value]="gaugeValues[3]" [animated]="true" [animationDuration]="1.5">
+  </mwl-gauge>
+  <mwl-gauge class="four" [max]="100" [dialStartAngle]="180" [dialEndAngle]="-90" [value]="gaugeValues[4]" [animated]="true"
+    [animationDuration]="2">
+  </mwl-gauge>
+  <mwl-gauge class="five" [max]="200" [dialStartAngle]="0" [dialEndAngle]="-180" [value]="gaugeValues[5]" [animated]="true"
+    [animationDuration]="1">
+  </mwl-gauge>
+  <mwl-gauge class="six" [max]="100" [dialStartAngle]="90.01" [dialEndAngle]="89.99" [dialRadius]="10" [showValue]="false"
+    [value]="gaugeValues[6]" [animated]="true" [animationDuration]="1">
+  </mwl-gauge>
+  <mwl-gauge class="seven" [max]="100" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [showValue]="false" [value]="gaugeValues[6]"
+    [animated]="true" [animationDuration]="1">
+  </mwl-gauge>
+</div>

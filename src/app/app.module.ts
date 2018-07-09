@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -12,6 +12,13 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { FirstPageComponent } from './first-page/first-page.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { ThirdPageComponent } from './third-page/third-page.component';
+
+
+// related to angular Guage module : speedo meter
+import { NgxGaugeModule } from 'ngx-gauge';
+
+// https://mattlewis92.github.io/angular-gauge/docs/index.html
+import { GaugeModule } from 'angular-gauge';
 
 
 const appRoutes: Routes = [
@@ -39,7 +46,11 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+
+    // Guage module 
+    NgxGaugeModule,
+    GaugeModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

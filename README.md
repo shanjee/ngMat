@@ -23,6 +23,14 @@ You can run the step 2 only, but if u get an error, then follow 1 and 2
 4) Generate component
 ng generate component FirstPage
 
+5) Install angular Guage module : Speedo meter
+
+`npm install --save ngx-gauge`
+
+6 ) install GaugeModule
+`npm install ng2-gauge --save`
+
+`npm install --save angular-gauge`
 
 ## Development server
 
