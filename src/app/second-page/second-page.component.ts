@@ -1,5 +1,8 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 
+import { GaugeService } from '../Services/gauge.service';
+import { Observable} from 'rxjs';
+
 @Component({
   selector: 'app-second-page',
   templateUrl: './second-page.component.html',
@@ -8,9 +11,17 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 export class SecondPageComponent implements OnInit, OnDestroy {
 
   percentageValue: (value: number) => string;
+ 
+  users: Observable<any[]>;
+  speedNow:any;
 
 
-  constructor() {
+ 
+  constructor(private gaugeService: GaugeService) {
+
+    // this.service = gaugeService;    
+     this.users = this.gaugeService.getCurrentSpeed();
+     this.speedNow = this.gaugeService.lastUser;
 
     this.percentageValue = function (value: number): string {
       return `${Math.round(value)} / ${this['max']}`;

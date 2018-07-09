@@ -20,6 +20,10 @@ import { NgxGaugeModule } from 'ngx-gauge';
 // https://mattlewis92.github.io/angular-gauge/docs/index.html
 import { GaugeModule } from 'angular-gauge';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstPageComponent},
@@ -51,6 +55,9 @@ const appRoutes: Routes = [
     // Guage module 
     NgxGaugeModule,
     GaugeModule.forRoot(),
+
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // for database
   ],
   providers: [],
   bootstrap: [AppComponent]

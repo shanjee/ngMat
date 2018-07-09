@@ -51,3 +51,11 @@
     [animated]="true" [animationDuration]="1">
   </mwl-gauge>
 </div>
+
+
+<div class="row" *ngFor = "let user of users | async">
+    {{user.content}}          
+</div>
+
+<h4>{{speedNow.content}}</h4>    
+ 
