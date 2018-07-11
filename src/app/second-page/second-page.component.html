@@ -12,17 +12,16 @@
     <!-- <div class="example-small-box mat-elevation-z4"> -->
     <div class="example-large-box mat-elevation-z4">
 
-     <ngx-gauge [type]="gaugeType" [value]=gaugeValues[1] [label]="gaugeLabel" [thresholds]="thresholdConfig" 
-     [append]="gaugeAppendText">
-    </ngx-gauge>
+      <ngx-gauge [type]="gaugeType" [value]=gaugeValues[1] [label]="gaugeLabel" [thresholds]="thresholdConfig" [append]="gaugeAppendText">
+      </ngx-gauge>
 
     </div>
   </mat-tab>
   <mat-tab label="Data Visualization">
     <div class="example-large-box mat-elevation-z4">
-      
-        <mwl-gauge class="two" [max]="100" [dialStartAngle]="180" [dialEndAngle]="0" [value]="gaugeValues[2]" [animated]="true" [animationDuration]="2">
-          </mwl-gauge>
+
+      <mwl-gauge class="two" [max]="100" [dialStartAngle]="180" [dialEndAngle]="0" [value]="gaugeValues[2]" [animated]="true" [animationDuration]="2">
+      </mwl-gauge>
 
     </div>
 
@@ -49,13 +48,12 @@
   </mwl-gauge>
   <mwl-gauge class="seven" [max]="100" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [showValue]="false" [value]="gaugeValues[6]"
     [animated]="true" [animationDuration]="1">
-  </mwl-gauge>
+  </mwl-gauge>  
+
 </div>
 
-
-<div class="row" *ngFor = "let user of users | async">
-    {{user.content}}          
+<div class="row" *ngFor="let speedoMeter of speedoMeters | async">
+  {{speedoMeter.content}}
 </div>
 
-<h4>{{speedNow.content}}</h4>    
- 
+<!-- <h4>{{speedNow.content}}</h4> -->

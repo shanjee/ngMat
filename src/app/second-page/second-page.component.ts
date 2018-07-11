@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 import { GaugeService } from '../Services/gauge.service';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-second-page',
@@ -11,22 +12,18 @@ import { Observable} from 'rxjs';
 export class SecondPageComponent implements OnInit, OnDestroy {
 
   percentageValue: (value: number) => string;
- 
-  users: Observable<any[]>;
-  speedNow:any;
 
+  // speedoMeters: AngularFireList<any>; //Observable<any[]>;
+  speedoMeters: Observable<any[]>;
+  speedNow: any;
 
- 
   constructor(private gaugeService: GaugeService) {
 
-    // this.service = gaugeService;    
-     this.users = this.gaugeService.getCurrentSpeed();
-     this.speedNow = this.gaugeService.lastUser;
-
+    this.speedoMeters = gaugeService.getAllSpeedometer();
+    
     this.percentageValue = function (value: number): string {
       return `${Math.round(value)} / ${this['max']}`;
     }
-
   }
 
   gaugeValues: any = {
@@ -78,5 +75,4 @@ export class SecondPageComponent implements OnInit, OnDestroy {
     '100': { color: 'orange' },
     '125': { color: 'red' }
   };
-
 }
