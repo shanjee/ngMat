@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 import { GaugeService } from '../Services/gauge.service';
 import { Observable } from 'rxjs';
+import { SpeedoMeter } from '../speedo-meter';
 
 @Component({
   selector: 'app-second-page',
@@ -14,13 +15,14 @@ export class SecondPageComponent implements OnInit, OnDestroy {
   percentageValue: (value: number) => string;
 
   // speedoMeters: AngularFireList<any>; //Observable<any[]>;
-  speedoMeters: Observable<any[]>;
+  speedoMeters: Observable<SpeedoMeter[]>;
   speedNow: any;
+  newSpeedoMeter: SpeedoMeter;
 
-  constructor(private gaugeService: GaugeService) {
+  constructor(public gaugeService: GaugeService) {
 
     this.speedoMeters = gaugeService.getAllSpeedometer();
-    
+
     this.percentageValue = function (value: number): string {
       return `${Math.round(value)} / ${this['max']}`;
     }
@@ -49,6 +51,11 @@ export class SecondPageComponent implements OnInit, OnDestroy {
         6: Math.round(Math.random() * 100),
         7: Math.round(Math.random() * 100)
       };
+
+      var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour:'numeric', minute: 'numeric', hour12: false };
+      this.newSpeedoMeter = { content: this.gaugeValues[1] , time: new Date().toLocaleDateString(undefined, options) };
+      
+      // this.gaugeService.createSpeedometer(this.newSpeedoMeter);
     };
 
     const INTERVAL: number = 2000;

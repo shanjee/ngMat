@@ -1,6 +1,6 @@
 export class SpeedoMeter {
-    $key: string;
+    // $key: string;
     content: string;
-    // age: number;
+    time: string;
     // active: boolean = true;
 }
