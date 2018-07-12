@@ -55,7 +55,7 @@ export class SecondPageComponent implements OnInit, OnDestroy {
       var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour:'numeric', minute: 'numeric', hour12: false };
       this.newSpeedoMeter = { content: this.gaugeValues[1] , time: new Date().toLocaleDateString(undefined, options) };
       
-      // this.gaugeService.createSpeedometer(this.newSpeedoMeter);
+      this.gaugeService.createSpeedometer(this.newSpeedoMeter);
     };
 
     const INTERVAL: number = 2000;

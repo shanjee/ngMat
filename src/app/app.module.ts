@@ -24,6 +24,10 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+// charts library
+import { ChartsModule } from 'ng2-charts';
+
+// import { ChartsModule } from 'ng4-charts/ng4-charts';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstPageComponent},
@@ -58,6 +62,9 @@ const appRoutes: Routes = [
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
+    
+    // charts 
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

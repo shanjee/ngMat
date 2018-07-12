@@ -1,3 +1,68 @@
-<p>
-  third-page works!
-</p>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+  <script src="node_modules/chart.js/dist/chart.js"></script>
+  
+
+</head>
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+
+      <!-- <div class="row">
+
+        <div class="col-md-6">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+              [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div> -->
+
+
+        
+        <!-- <div class="col-md-6">
+          <div style="display: block;">
+            <canvas baseChart width="300" height="300" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+              [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+      <div class="col-md-6">
+        <div style="display: block;">
+        <canvas baseChart width="400" height="400"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6" style="margin-bottom: 10px">
+        <table class="table table-responsive table-condensed">
+          <tr>
+            <!-- <th *ngFor="let label of lineChartLabels">{{label}}</th> -->
+          </tr>          
+        </table>
+        
+      </div>
+    </div>
+
+  <button (click)="randomize()">CLICK</button>
