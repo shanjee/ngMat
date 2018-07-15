@@ -58,7 +58,7 @@ export class SecondPageComponent implements OnInit, OnDestroy {
       this.gaugeService.createSpeedometer(this.newSpeedoMeter);
     };
 
-    const INTERVAL: number = 2000;
+    const INTERVAL: number = 10000;
 
     this.interval = setInterval(updateValues, INTERVAL);
     updateValues();
