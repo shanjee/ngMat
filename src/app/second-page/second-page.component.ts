@@ -52,13 +52,18 @@ export class SecondPageComponent implements OnInit, OnDestroy {
         7: Math.round(Math.random() * 100)
       };
 
-      var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour:'numeric', minute: 'numeric', hour12: false };
-      this.newSpeedoMeter = { content: this.gaugeValues[1] , time: new Date().toLocaleDateString(undefined, options) };
-      
+      var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false };
+      // this.newSpeedoMeter = { content: this.gaugeValues[1] , time: Date.parse(new Date().toLocaleTimeString(undefined, options))};
+      this.newSpeedoMeter = { content: this.gaugeValues[1], time: + new Date().getTime().toString() };
+      // old code insert date time format
+      // this.newSpeedoMeter = { content: this.gaugeValues[1] , time: new Date().toLocaleDateString(undefined, options) };
+        console.log("\n Epoch now : " + new Date().getTime().toString() );
+
       this.gaugeService.createSpeedometer(this.newSpeedoMeter);
+
     };
 
-    const INTERVAL: number = 10000;
+    const INTERVAL: number = 5000;
 
     this.interval = setInterval(updateValues, INTERVAL);
     updateValues();

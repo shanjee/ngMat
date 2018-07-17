@@ -5,6 +5,11 @@ import { GaugeService } from '../Services/gauge.service';
 import { SpeedoMeter } from '../speedo-meter';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
+// https://stackblitz.com/edit/angular-highcharts-stock
+import { StockChart } from 'angular-highcharts';
+import { map } from 'rxjs/operators';
+import { _MatChipMixinBase } from '@angular/material';
+
 @Component({
   selector: 'app-third-page',
   templateUrl: './third-page.component.html',
@@ -15,14 +20,21 @@ export class ThirdPageComponent implements OnInit {
   // lineChart
   public lineChartLabels: Array<any> = ['8.00'];
 
+  public myData: Array<number | [number, number] | [string, number]> = [];
+  public myData2: any[] = [];
+  public speedArray: number[] = [];
+  public timeArray: number[] = [];
+  public demoArray: Array<[number, number]> = [];
+
   public lineChartData: Array<any> = [
     { data: [65, 59, 80, 81], label: 'Speed Km/h' }
-    // ,{ data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    // { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
+    // ,{ data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
   speedoMeters: Observable<SpeedoMeter[]>;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+
+  public stock: StockChart;
 
   constructor(public gaugeService: GaugeService) {
     this.speedoMeters = gaugeService.getAllSpeedometer();
@@ -30,8 +42,14 @@ export class ThirdPageComponent implements OnInit {
 
   }
 
+  // ngOnInit() {
+  //   // @ViewChild(BaseChkcartDirective) chart: BaseChartDirective;
+
+  // }
+
   ngOnInit() {
-    // @ViewChild(BaseChkcartDirective) chart: BaseChartDirective;
+
+    this.populateSpeedHystoryGraph();
   }
 
   public lineChartOptions: any = {
@@ -81,14 +99,16 @@ export class ThirdPageComponent implements OnInit {
     // this.lineChartData = _lineChartData;
 
     this.populateChartDate();
+
+    this.populateSpeedHystoryGraph();
   }
 
   public populateChartDate(): void {
+
     this.speedoMeters.subscribe((reading) => {
       let readingLocal = <SpeedoMeter[]>reading;
 
       if (SpeedoMeter) {
-
 
         let _lineChartData = Array<any>();// = new Array(this.lineChartData.length);
         let _lineChartLabels = Array<any>();// = new Array(this.lineChartData.length);
@@ -99,7 +119,7 @@ export class ThirdPageComponent implements OnInit {
         // }
 
         readingLocal.forEach(a => {
-          
+
           this.lineChartLabels.push(a.time);
           this.lineChartData.push(a.content);
 
@@ -108,13 +128,21 @@ export class ThirdPageComponent implements OnInit {
 
           this.lineChartLabels = _lineChartLabels;
           this.lineChartData = _lineChartData;
-          
+
           this.chart.chart.config.data.labels = this.lineChartLabels;
           this.chart.chart.config.data.data = this.lineChartData;
-          console.log(a.time);
+
+          console.log("push time:" + a.time + " Speed : " + a.content);
+          this.myData.push(+a.content); // + operate for convert string to number 
+
+          this.myData2.push([a.time ,a.content]);
+
+          this.speedArray.push(+a.content);
+          this.timeArray.push(+a.time);
+
         });
 
-        console.log("length: ", this.lineChartLabels.length);
+        console.log(this.myData2);
       }
     });
   }
@@ -126,6 +154,66 @@ export class ThirdPageComponent implements OnInit {
 
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  public populateSpeedHystoryGraph(): void {
+
+    // this.myData.forEach((data, index) => {
+    //   console.log("speed: " + this.speedArray[index] + " time :" + this.timeArray[index] + " index :" + index);
+    //   //console.log("time: "+ this.timeArray[index].toString());
+    // });
+
+
+    for (let i = 0; i < this.speedArray.length; i++) {
+      console.log(this.timeArray[i]);
+      // this.myData2[i][0] = {15555: 10};
+      // this.myData2[i][1] = this.speedArray[i];
+    }
+
+    // this.myData =
+    // [
+    //   [1293580800000, 46.47],
+    //   [1531741020000, 146.08]         
+    // ]
+
+    this.stock = new StockChart({
+      rangeSelector: {
+        selected: 1
+      },
+      title: {
+        text: 'Speed of your car km/h'
+      },
+
+      plotOptions: {
+        series: {
+          marker: {
+            enabled: true
+          },
+
+          dataLabels: {
+            enabled: true
+          }
+        }
+      },
+
+      series: [{
+        // tooltip: {
+        //   valueDecimals: 2
+        // },
+        name: 'Speed',
+        data: this.myData2
+/*
+          [
+            [1293580800000, 46.47],
+            [1293667200000, 46.24],
+            [1293753600000, 46.08],
+            [1514246400000, 170.57],
+            [1531741020000, 146.08]
+          ]
+*/
+      }]
+    });
+
   }
 
 }
