@@ -38,8 +38,6 @@ export class ThirdPageComponent implements OnInit {
 
   constructor(public gaugeService: GaugeService) {
     this.speedoMeters = gaugeService.getAllSpeedometer();
-    this.populateChartDate();
-
   }
 
   // ngOnInit() {
@@ -48,8 +46,8 @@ export class ThirdPageComponent implements OnInit {
   // }
 
   ngOnInit() {
-
-    this.populateSpeedHystoryGraph();
+    this.populateChartDate();
+    this.populateSpeedHystoryGraph(); //2nd 
   }
 
   public lineChartOptions: any = {
@@ -88,35 +86,21 @@ export class ThirdPageComponent implements OnInit {
 
   public randomize(): void {
 
-    // let _lineChartData: Array<any> = new Array(this.lineChartData.length);
-
-    // for (let i = 0; i < this.lineChartData.length; i++) {
-    //   _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-    //   for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-    //     _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-    //   }
-    // }
-    // this.lineChartData = _lineChartData;
-
-    this.populateChartDate();
-
-    this.populateSpeedHystoryGraph();
+    this.populateChartDate(); // 1st
+    // this.populateSpeedHystoryGraph(); //2nd
   }
 
   public populateChartDate(): void {
-
+    
     this.speedoMeters.subscribe((reading) => {
+
       let readingLocal = <SpeedoMeter[]>reading;
+      this.myData2 = [];
 
       if (SpeedoMeter) {
 
         let _lineChartData = Array<any>();// = new Array(this.lineChartData.length);
         let _lineChartLabels = Array<any>();// = new Array(this.lineChartData.length);
-
-        // this.lineChartLabels.length = 0;
-        // for (let i = 0; i < 10; i++) {
-        //   this.lineChartLabels.push(i);
-        // }
 
         readingLocal.forEach(a => {
 
@@ -132,17 +116,13 @@ export class ThirdPageComponent implements OnInit {
           this.chart.chart.config.data.labels = this.lineChartLabels;
           this.chart.chart.config.data.data = this.lineChartData;
 
-          console.log("push time:" + a.time + " Speed : " + a.content);
-          this.myData.push(+a.content); // + operate for convert string to number 
+          //2nd graph data
+          this.myData2.push([a.time, a.content]);
+          console.log(this.myData2);
 
-          this.myData2.push([a.time ,a.content]);
-
-          this.speedArray.push(+a.content);
-          this.timeArray.push(+a.time);
-
-        });
-
-        console.log(this.myData2);
+        });        
+        // console.log(this.myData2);
+        this.populateSpeedHystoryGraph();
       }
     });
   }
@@ -156,25 +136,8 @@ export class ThirdPageComponent implements OnInit {
     console.log(e);
   }
 
+  // 2nd
   public populateSpeedHystoryGraph(): void {
-
-    // this.myData.forEach((data, index) => {
-    //   console.log("speed: " + this.speedArray[index] + " time :" + this.timeArray[index] + " index :" + index);
-    //   //console.log("time: "+ this.timeArray[index].toString());
-    // });
-
-
-    for (let i = 0; i < this.speedArray.length; i++) {
-      console.log(this.timeArray[i]);
-      // this.myData2[i][0] = {15555: 10};
-      // this.myData2[i][1] = this.speedArray[i];
-    }
-
-    // this.myData =
-    // [
-    //   [1293580800000, 46.47],
-    //   [1531741020000, 146.08]         
-    // ]
 
     this.stock = new StockChart({
       rangeSelector: {
@@ -202,15 +165,15 @@ export class ThirdPageComponent implements OnInit {
         // },
         name: 'Speed',
         data: this.myData2
-/*
-          [
-            [1293580800000, 46.47],
-            [1293667200000, 46.24],
-            [1293753600000, 46.08],
-            [1514246400000, 170.57],
-            [1531741020000, 146.08]
-          ]
-*/
+        /*
+                  [
+                    [1293580800000, 46.47],
+                    [1293667200000, 46.24],
+                    [1293753600000, 46.08],
+                    [1514246400000, 170.57],
+                    [1531741020000, 146.08]
+                  ]
+        */
       }]
     });
 
