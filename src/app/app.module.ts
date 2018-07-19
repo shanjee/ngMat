@@ -5,13 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNavComponent } from './my-nav/my-nav.component';
+import { MyNavComponent } from 'src/app/Component/my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTabsModule } from '@angular/material';
 
-import { FirstPageComponent } from './first-page/first-page.component';
-import { SecondPageComponent } from './second-page/second-page.component';
-import { ThirdPageComponent } from './third-page/third-page.component';
+import { FirstPageComponent } from 'src/app/Component/first-page/first-page.component' //'./first-page/first-page.component';
+import { SecondPageComponent } from 'src/app/Component/second-page/second-page.component';
+import { ThirdPageComponent } from 'src/app/Component/third-page/third-page.component';
 
 
 // related to angular Guage module : speedo meter

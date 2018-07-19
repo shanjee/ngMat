@@ -5,7 +5,7 @@ import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable, fromEventPattern } from 'rxjs';
 import { map } from "rxjs/operators";
-import { SpeedoMeter } from "../speedo-meter"
+import { SpeedoMeter } from "../Component/Model/speedo-meter"
 
 
 

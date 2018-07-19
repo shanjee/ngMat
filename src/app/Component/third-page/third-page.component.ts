@@ -1,8 +1,8 @@
 // import { Component, OnInit } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GaugeService } from '../Services/gauge.service';
-import { SpeedoMeter } from '../speedo-meter';
+import { GaugeService } from 'src/app/Services/gauge.service';
+import { SpeedoMeter } from 'src/app/Component/Model/speedo-meter';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
 // https://stackblitz.com/edit/angular-highcharts-stock

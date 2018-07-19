@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
-import { GaugeService } from '../Services/gauge.service';
+import { GaugeService } from 'src/app/Services/gauge.service';
 import { Observable } from 'rxjs';
-import { SpeedoMeter } from '../speedo-meter';
+import { SpeedoMeter } from 'src/app/Component/Model/speedo-meter';
 
 @Component({
   selector: 'app-second-page',
