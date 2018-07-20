@@ -57,9 +57,9 @@ export class SecondPageComponent implements OnInit, OnDestroy {
       this.newSpeedoMeter = { content: this.gaugeValues[1], time: + new Date().getTime().toString() };
       // old code insert date time format
       // this.newSpeedoMeter = { content: this.gaugeValues[1] , time: new Date().toLocaleDateString(undefined, options) };
-        console.log("\n Epoch now : " + new Date().getTime().toString() );
+      console.log("\n Epoch now : " + new Date().getTime().toString());
 
-      this.gaugeService.createSpeedometer(this.newSpeedoMeter);
+      // this.gaugeService.createSpeedometer(this.newSpeedoMeter);
 
     };
 

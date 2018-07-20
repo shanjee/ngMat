@@ -10,6 +10,7 @@ import { StockChart } from 'angular-highcharts';
 import { map } from 'rxjs/operators';
 import { _MatChipMixinBase } from '@angular/material';
 
+
 @Component({
   selector: 'app-third-page',
   templateUrl: './third-page.component.html',
